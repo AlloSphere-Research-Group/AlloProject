@@ -13,7 +13,8 @@ git submodule update
 cd AlloSystem
 git checkout cmake
 cd ..
-git add -A
-git commit -m "Initial commit for project"
+
+#git add -A
+#git commit -m "Initial commit for project"
 
 
