@@ -2,8 +2,8 @@
 # get AlloSystem as a submodule
 git init
 git submodule add https://github.com/AlloSphere-Research-Group/AlloSystem.git AlloSystem
-git submodule add https://github.com/AlloSphere-Research-Group/GLV.git AlloSystem
-git submodule add https://github.com/AlloSphere-Research-Group/Gamma.git AlloSystem
+git submodule add https://github.com/AlloSphere-Research-Group/GLV.git GLV
+git submodule add https://github.com/AlloSphere-Research-Group/Gamma.git Gamma
 #git submodule add https://github.com/AlloSphere-Research-Group/vsr.git AlloSystem
 
 git submodule init
