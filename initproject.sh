@@ -11,7 +11,13 @@ git submodule update
 
 # get cmake branch. Not needed once merged
 cd AlloSystem
-git checkout cmake
+git pull origin cmake
+cd ..
+cd GLV
+git pull origin cmake
+cd ..
+cd Gamma
+git pull origin cmake
 cd ..
 
 #git add -A
