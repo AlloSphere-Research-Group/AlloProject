@@ -1,10 +1,10 @@
+# Change this to suit your needs
+CMAKE_FLAGS="-DBUILD_ALLOGLV=1 -DBUILD_GLV=1 -DBUILD_VSR=0 -DBUILD_GAMMA=1"
 
-
+# ------------------------------------------------
 FILENAME=`echo $1 |cut -d'.' -f1 | sed -e "s|/|_|g"`
 TARGET=${FILENAME}_run
 ALLOVSR_BUILD=0
-CMAKE_FLAGS="-DBUILD_ALLOGLV=1 -DBUILD_GLV=1 -DBUILD_VSR=0 -DBUILD_GAMMA=1"
-
 
 if [ -f $1 ]
 then

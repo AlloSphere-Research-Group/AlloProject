@@ -7,8 +7,9 @@ git submodule add https://github.com/AlloSphere-Research-Group/Gamma.git Gamma
 #git submodule add https://github.com/AlloSphere-Research-Group/vsr.git AlloSystem
 
 git submodule init
+git submodule update
 
-# get cmake branch. Not needed once merged
+# get cmake branch. Will need to change once cmake is merged
 cd AlloSystem
 git pull origin cmake
 cd ..
@@ -19,7 +20,6 @@ cd Gamma
 git pull origin cmake
 cd ..
 
-git submodule update
 
 #git add -A
 #git commit -m "Initial commit for project"
