@@ -1,0 +1,34 @@
+rm -rf build/ CMakeCache.txt CMakeFiles/ cmake_install.cmake Makefile build.ninja rules.ninja AlloSystem.xcodeproj AlloSystem.build CMakeScripts
+
+cd AlloSystem
+cd allocore
+rm -rf build/ CMakeCache.txt CMakeFiles/ cmake_install.cmake Makefile build.ninja rules.ninja AlloSystem.xcodeproj AlloSystem.build CMakeScripts
+cd ..
+
+cd alloGLV
+rm -rf build/ CMakeCache.txt CMakeFiles/ cmake_install.cmake Makefile build.ninja rules.ninja AlloSystem.xcodeproj AlloSystem.build CMakeScripts
+cd ..
+
+cd alloutil
+rm -rf build/ CMakeCache.txt CMakeFiles/ cmake_install.cmake Makefile build.ninja rules.ninja AlloSystem.xcodeproj AlloSystem.build CMakeScripts
+cd ..
+
+cd ..
+ 
+if [ -d "GLV" ]; then
+    cd GLV
+    ./distclean 
+    cd ..  
+fi
+
+if [ -d "Gamma" ]; then
+    cd Gamma
+    ./distclean  
+    cd .. 
+fi
+
+if [ -d "vsr" ]; then
+    cd vsr
+    ./distclean  
+    cd .. 
+fi
