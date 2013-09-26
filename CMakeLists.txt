@@ -3,6 +3,10 @@ project (AlloApps)
 
 add_subdirectory(AlloSystem)
 
+if((NOT BUILD_DIR) AND (NOT BUILD_APP_FILE))
+  message(FATAL_ERROR "AlloProject requires passing a file or a directory to cmake. See buildandrun.sh script")
+endif((NOT BUILD_DIR) AND (NOT BUILD_APP_FILE))
+
 if(BUILD_DIR)
   file(GLOB ALLOPROJECT_APP_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${BUILD_APP_DIR}/*.cpp)
   string(REPLACE "/" "_" APP_NAME ${BUILD_APP_DIR})
