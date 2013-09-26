@@ -2,9 +2,18 @@
 CMAKE_FLAGS="-DBUILD_ALLOGLV=1 -DBUILD_GLV=1 -DBUILD_VSR=0 -DBUILD_GAMMA=1"
 
 # ------------------------------------------------
+# You shouldn't need to touch the stuff below
+
 FILENAME=`echo $1 |cut -d'.' -f1 | sed -e "s|/|_|g"`
 TARGET=${FILENAME}_run
 ALLOVSR_BUILD=0
+
+if [ $# == 0 ]
+then
+    echo Aborting: You must provide a source filename or a directory
+    exit 1
+fi
+
 
 if [ -f $1 ]
 then
