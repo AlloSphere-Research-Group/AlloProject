@@ -73,7 +73,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/AlloSystem/allocore/
   ${CMAKE_CURRENT_SOURCE_DIR}/AlloSystem/alloutil/
   ${CMAKE_CURRENT_SOURCE_DIR}/AlloSystem/alloGLV/
   ${CMAKE_CURRENT_SOURCE_DIR}/AlloSystem/allovsr/
-  ${GAMMA_INCLUDE_DIRs} )
+  ${GAMMA_INCLUDE_DIR} )
 #    message("Gamma : ${GAMMA_INCLUDE_DIRs}")
 target_link_libraries(${APP_NAME}
   ${ALLOCORE_LIBRARY} ${ALLOUTIL_LIBRARY} ${ALLOGLV_LIBRARY}
