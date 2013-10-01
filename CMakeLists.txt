@@ -3,26 +3,26 @@ project (AlloApps)
 
 add_subdirectory(AlloSystem)
 
-if((NOT BUILD_DIR) AND (NOT BUILD_APP_FILE))
+if((NOT ALLOPROJECT_BUILD_DIR) AND (NOT BUILD_APP_FILE))
   message(FATAL_ERROR "AlloProject requires passing a file or a directory to cmake. See buildandrun.sh script")
-endif((NOT BUILD_DIR) AND (NOT BUILD_APP_FILE))
+endif((NOT ALLOPROJECT_BUILD_DIR) AND (NOT BUILD_APP_FILE))
 
-if(BUILD_DIR)
+if(ALLOPROJECT_BUILD_DIR)
   file(GLOB ALLOPROJECT_APP_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${BUILD_APP_DIR}/*.cpp)
   string(REPLACE "/" "_" APP_NAME ${BUILD_APP_DIR})
-  set(SOURCE_DIR ${BUILD_DIR})
+  set(SOURCE_DIR ${ALLOPROJECT_BUILD_DIR})
 else()
   set(ALLOPROJECT_APP_SRC ${BUILD_APP_FILE})
   string(REPLACE "/" "_" APP_NAME ${BUILD_APP_FILE})
   get_filename_component(APP_NAME ${APP_NAME} NAME_WE) # Get name w/o extension
   get_filename_component(SOURCE_DIR ${BUILD_APP_FILE} PATH)
-endif(BUILD_DIR)
+endif(ALLOPROJECT_BUILD_DIR)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/build/bin)
 
 if(EXISTS ${SOURCE_DIR)/flags.txt)
   file(READ ${SOURCE_DIR}/flags.txt EXTRA_COMPILER_FLAGS)
-  message("WARNING: Using additional flags from /projects/${dir}/flags.txt: " ${EXTRA_COMPILER_FLAGS})
+  message("WARNING: Using additional flags from ${SOURCE_DIR)/flags.txt: " ${EXTRA_COMPILER_FLAGS})
 endif()
 
 add_executable(${APP_NAME} EXCLUDE_FROM_ALL "${ALLOPROJECT_APP_SRC}")
