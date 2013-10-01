@@ -22,7 +22,7 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/build/bin)
 
 add_executable(${APP_NAME} EXCLUDE_FROM_ALL "${ALLOPROJECT_APP_SRC}")
 
-if(EXISTS "${SOURCE_DIR)/flags.txt")
+if(EXISTS "${SOURCE_DIR}/flags.txt")
   file(READ "${SOURCE_DIR}/flags.txt" EXTRA_COMPILER_FLAGS)
   target_compile_definitions(${APP_NAME} PUBLIC "${EXTRA_COMPILER_FLAGS}")
   message("WARNING: Using additional flags from ${SOURCE_DIR}/flags.txt: " ${EXTRA_COMPILER_FLAGS})
