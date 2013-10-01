@@ -26,7 +26,7 @@ if(EXISTS ${SOURCE_DIR)/flags.txt)
 endif()
 
 add_executable(${APP_NAME} EXCLUDE_FROM_ALL "${ALLOPROJECT_APP_SRC}")
-target_compile_definitions(${APP_NAME} "${EXTRA_COMPILER_FLAGS}")
+target_compile_definitions(${APP_NAME} PUBLIC "${EXTRA_COMPILER_FLAGS}")
 
 message("Target: ${APP_NAME}")
 message("From sources: ${ALLOPROJECT_APP_SRC}")
