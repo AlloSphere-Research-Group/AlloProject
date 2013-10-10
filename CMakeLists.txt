@@ -14,7 +14,9 @@ if(BUILD_DIR)
 else()
   set(ALLOPROJECT_APP_SRC ${BUILD_APP_FILE})
   string(REPLACE "/" "_" APP_NAME ${BUILD_APP_FILE})
-  get_filename_component(APP_NAME ${APP_NAME} NAME_WE) # Get name w/o extension
+  get_filename_component(APP_NAME ${APP_NAME} NAME)
+  STRING(REGEX REPLACE "\\.[^.]*\$" "" APP_NAME "${APP_NAME}")
+#  get_filename_component(APP_NAME ${APP_NAME} NAME_WE) # Get name w/o extension (extension is anything after first dot!)
   get_filename_component(SOURCE_DIR ${BUILD_APP_FILE} PATH)
 endif(BUILD_DIR)
 
