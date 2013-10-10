@@ -4,8 +4,11 @@ CMAKE_FLAGS="-DBUILD_ALLOGLV=1 -DBUILD_GLV=1 -DBUILD_VSR=0 -DBUILD_GAMMA=1"
 # ------------------------------------------------
 # You shouldn't need to touch the stuff below
 
-FILENAME=$(basename "$fullfile")
-FILENAME="${FILENAME%.*}"
+FILENAME=$(basename "$1")
+DIRNAME=$(dirname "$1")
+FILENAME="${DIRNAME//./_}_${FILENAME%.*}"
+
+echo ${FILENAME}
 TARGET=${FILENAME}_run
 ALLOVSR_BUILD=0
 
