@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Change this to suit your needs
 CMAKE_FLAGS="-DBUILD_ALLOGLV=1 -DBUILD_GLV=1 -DBUILD_VSR=0 -DBUILD_GAMMA=1"
 
