@@ -4,7 +4,8 @@ CMAKE_FLAGS="-DBUILD_ALLOGLV=1 -DBUILD_GLV=1 -DBUILD_VSR=0 -DBUILD_GAMMA=1"
 # ------------------------------------------------
 # You shouldn't need to touch the stuff below
 
-FILENAME=`echo $1 |cut -d'.' -f1 | sed -e "s|/|_|g"`
+FILENAME=$(basename "$fullfile")
+FILENAME="${FILENAME%.*}"
 TARGET=${FILENAME}_run
 ALLOVSR_BUILD=0
 
