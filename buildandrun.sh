@@ -16,10 +16,9 @@ FILENAME=$(basename "$1")
 DIRNAME=$(dirname "$1")
 FILENAME="${DIRNAME//./_}_${FILENAME%.*}"
 
-echo ${FILENAME}
-TARGET=${FILENAME}_run
-ALLOVSR_BUILD=0
-
+echo FILENAME: ${FILENAME}
+TARGET=${FILENAME//\//_}_run
+echo TARGET: ${TARGET}
 
 
 if [ -f $1 ]
