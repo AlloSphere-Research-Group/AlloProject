@@ -16,15 +16,15 @@ git submodule init
 for i in $(git submodule | sed -e 's/.* //'); do
     spath=$(git config -f .gitmodules --get submodule.$i.path)
     surl=$(git config -f .gitmodules --get submodule.$i.url)
-    git clone --depth 1 $surl $spath
+    git clone -b devel --depth 1 $surl $spath
 done
 
 git submodule update
 
 # get cmake branch. Will need to change once cmake is merged
 cd AlloSystem
-git checkout devel
-git pull origin devel
+#git checkout devel
+#git pull origin devel
 cd ..
 cd GLV
 git checkout cmake
