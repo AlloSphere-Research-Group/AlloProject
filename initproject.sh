@@ -4,17 +4,10 @@ git init
 
 # After git 1.8.4 you can use --depth 1 as an option to submodule add, in the meantime
 # see hack below
-git clone --depth 1 https://github.com/AlloSphere-Research-Group/AlloSystem.git AlloSystem
-git submodule add https://github.com/AlloSphere-Research-Group/GLV.git GLV
-git submodule add https://github.com/AlloSphere-Research-Group/Gamma.git Gamma
+git clone -b devel --depth 1 https://github.com/AlloSphere-Research-Group/AlloSystem.git AlloSystem
+git clone --depth 1 https://github.com/AlloSphere-Research-Group/GLV.git GLV
+git clone --depth 1 https://github.com/AlloSphere-Research-Group/Gamma.git Gamma
 #git submodule add https://github.com/AlloSphere-Research-Group/vsr.git AlloSystem
-
-git submodule init
-
-# hack for shallow cloning from:
-# http://stackoverflow.com/questions/2144406/git-shallow-submodules
-
-#git submodule update
 
 # get cmake branch. Will need to change once cmake is merged
 #cd AlloSystem
