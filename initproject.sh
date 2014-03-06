@@ -11,8 +11,8 @@ git submodule update
 
 # get cmake branch. Will need to change once cmake is merged
 cd AlloSystem
-git checkout cmake
-git pull origin cmake
+git checkout devel
+git pull origin devel
 cd ..
 cd GLV
 git checkout cmake
