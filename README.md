@@ -3,6 +3,10 @@ AlloProject
 
 This repository contains some scripts to work with AlloSystem. 
 
+You can clone this repository to a particular directory (e.g. my_new_project_dir) with:
+
+    git clone https://github.com/AlloSphere-Research-Group/AlloProject.git my_new_project_dir
+
 Initializing
 ===
 
