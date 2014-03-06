@@ -1,4 +1,4 @@
-
+#! /bin/bash
 # get AlloSystem as a submodule
 git init
 git submodule add --depth 1 https://github.com/AlloSphere-Research-Group/AlloSystem.git AlloSystem
