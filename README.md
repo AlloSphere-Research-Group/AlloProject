@@ -21,11 +21,11 @@ Building
 
 To build and run a file, you can do:
 
-	./buildandrun src/simpleApp.cpp
+	./run.sh src/simpleApp.cpp
 
 To build all the .cpp files inside a directory into a single application and run it:
 
-	./buildandrun src
+	./run.sh src
 
 XCode projects
 ===
