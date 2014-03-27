@@ -1,7 +1,7 @@
 #!/bin/bash
 # AlloProject dependencies install script
 
-if [ ! -d "AlloSystem/allcore" ]; then
+if [ ! -d "AlloSystem/allocore" ]; then
     echo "Please run initproject.sh script before this one."
     exit 1
 fi
