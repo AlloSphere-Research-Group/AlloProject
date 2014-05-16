@@ -43,7 +43,7 @@ message("From sources: ${ALLOPROJECT_APP_SRC}")
 
 # Dependencies (check if targets exist and set variables)
 get_target_property(ALLOCORE_LIBRARY allocore LOCATION)
-get_target_property(ALLOCORE_INCLUDE_DIR allocore ALLOCORE_INCLUDE_DIR)
+get_target_property(ALLOCORE_DEP_INCLUDE_DIR allocore ALLOCORE_DEP_INCLUDE_DIR)
 get_target_property(ALLOCORE_LINK_LIBRARIES allocore ALLOCORE_LINK_LIBRARIES)
 add_dependencies(${APP_NAME} allocore) 
 
@@ -71,7 +71,7 @@ endif(TARGET VSR)
 
 if(TARGET alloutil)
   get_target_property(ALLOUTIL_LIBRARY alloutil LOCATION)
-  get_target_property(ALLOUTIL_INCLUDE_DIR alloutil ALLOUTIL_INCLUDE_DIR)
+  get_target_property(ALLOUTIL_DEP_INCLUDE_DIR alloutil ALLOUTIL_DEP_INCLUDE_DIR)
   get_target_property(ALLOUTIL_LINK_LIBRARIES alloutil ALLOUTIL_LINK_LIBRARIES)
   add_dependencies(${APP_NAME} alloutil)
 endif(TARGET alloutil)
@@ -87,8 +87,8 @@ endif(TARGET alloGLV)
 
 #file(GLOB ALLOPROJECT_APP_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${ALLOPROJECT_BUILD_APP_DIR}/*.*)
 
-include_directories(${ALLOCORE_INCLUDE_DIR}
-  ${ALLOUTIL_INCLUDE_DIR}
+include_directories(${ALLOCORE_DEP_INCLUDE_DIR}
+  ${ALLOUTIL_DEP_INCLUDE_DIR}
   ${ALLOGLV_INCLUDE_DIR}
   ${GLV_INCLUDE_DIR}
   ${ALLOVSR_INCLUDE_DIR}
