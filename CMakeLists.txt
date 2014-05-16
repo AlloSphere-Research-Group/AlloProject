@@ -43,7 +43,7 @@ message("From sources: ${ALLOPROJECT_APP_SRC}")
 
 # Dependencies (check if targets exist and set variables)
 get_target_property(ALLOCORE_LIBRARY allocore LOCATION)
-get_target_property(ALLOCORE_DEP_INCLUDE_DIR allocore ALLOCORE_DEP_INCLUDE_DIR)
+get_target_property(ALLOCORE_DEP_INCLUDE_DIRS allocore ALLOCORE_DEP_INCLUDE_DIRS)
 get_target_property(ALLOCORE_LINK_LIBRARIES allocore ALLOCORE_LINK_LIBRARIES)
 add_dependencies(${APP_NAME} allocore) 
 

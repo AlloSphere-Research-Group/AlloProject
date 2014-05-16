@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Change this to suit your needs
+BUILD_ALLOUTIL=1
 BUILD_ALLOGLV=1
 BUILD_GLV=1
 BUILD_VSR=0
