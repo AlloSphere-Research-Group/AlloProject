@@ -71,7 +71,7 @@ endif(TARGET VSR)
 
 if(TARGET alloutil)
   get_target_property(ALLOUTIL_LIBRARY alloutil LOCATION)
-  get_target_property(ALLOUTIL_DEP_INCLUDE_DIR alloutil ALLOUTIL_DEP_INCLUDE_DIR)
+  get_target_property(ALLOUTIL_DEP_INCLUDE_DIRS alloutil ALLOUTIL_DEP_INCLUDE_DIRS)
   get_target_property(ALLOUTIL_LINK_LIBRARIES alloutil ALLOUTIL_LINK_LIBRARIES)
   add_dependencies(${APP_NAME} alloutil)
 endif(TARGET alloutil)
@@ -87,8 +87,8 @@ endif(TARGET alloGLV)
 
 #file(GLOB ALLOPROJECT_APP_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${ALLOPROJECT_BUILD_APP_DIR}/*.*)
 
-include_directories(${ALLOCORE_DEP_INCLUDE_DIR}
-  ${ALLOUTIL_DEP_INCLUDE_DIR}
+include_directories(${ALLOCORE_DEP_INCLUDE_DIRS}
+  ${ALLOUTIL_DEP_INCLUDE_DIRS}
   ${ALLOGLV_INCLUDE_DIR}
   ${GLV_INCLUDE_DIR}
   ${ALLOVSR_INCLUDE_DIR}
