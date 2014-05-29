@@ -71,7 +71,7 @@ endif(TARGET VSR)
 
 if(TARGET alloutil)
   get_target_property(ALLOUTIL_LIBRARY alloutil LOCATION)
-  get_target_property(ALLOUTIL_DEP_INCLUDE_DIRS alloutil ALLOUTIL_DEP_INCLUDE_DIRS)
+  get_target_property(ALLOUTIL_DEP_INCLUDE_DIR alloutil ALLOUTIL_DEP_INCLUDE_DIR)
   get_target_property(ALLOUTIL_LINK_LIBRARIES alloutil ALLOUTIL_LINK_LIBRARIES)
   add_dependencies(${APP_NAME} alloutil)
 endif(TARGET alloutil)
