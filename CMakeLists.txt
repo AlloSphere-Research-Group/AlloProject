@@ -4,10 +4,11 @@ project (AlloApps)
 add_subdirectory(AlloSystem)
 
 if((NOT ALLOPROJECT_BUILD_DIR) AND (NOT ALLOPROJECT_BUILD_APP_FILE))
-  message(FATAL_ERROR "AlloProject requires passing a file or a directory to cmake. See buildandrun.sh script")
+  message(FATAL_ERROR "AlloProject requires passing a file or a directory to cmake. See run.sh script")
 endif((NOT ALLOPROJECT_BUILD_DIR) AND (NOT ALLOPROJECT_BUILD_APP_FILE))
 
 if(ALLOPROJECT_BUILD_DIR)
+  string(REGEX REPLACE "/+$" "" ALLOPROJECT_BUILD_APP_DIR "${ALLOPROJECT_BUILD_APP_DIR}") # remove trailing slash
   file(GLOB ALLOPROJECT_APP_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${ALLOPROJECT_BUILD_APP_DIR}/*.cpp)
   string(REPLACE "/" "_" APP_NAME ${ALLOPROJECT_BUILD_APP_DIR})
   set(SOURCE_DIR ${ALLOPROJECT_BUILD_APP_DIR})
@@ -57,6 +58,8 @@ if(TARGET GLV)
   set(GLV_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/GLV)
   get_target_property(GLV_LIBRARY GLV LOCATION)
   add_dependencies(${APP_NAME} GLV)
+else()
+    set(GLV_LIBRARY "")
 endif(TARGET GLV)
 
 if(TARGET VSR)
@@ -81,6 +84,8 @@ if(TARGET alloGLV)
   get_target_property(ALLOGLV_INCLUDE_DIR alloGLV ALLOGLV_INCLUDE_DIR)
   get_target_property(ALLOGLV_LINK_LIBRARIES alloGLV ALLOGLV_LINK_LIBRARIES)
   add_dependencies(${APP_NAME} alloGLV)
+else()
+    set(ALLOGLV_LIBRARY "")
 endif(TARGET alloGLV)
 
 # TODO copy resources to build directory

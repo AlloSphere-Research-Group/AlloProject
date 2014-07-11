@@ -2,8 +2,8 @@
 
 # Change this to suit your needs
 BUILD_ALLOUTIL=1
-BUILD_ALLOGLV=1
-BUILD_GLV=1
+BUILD_ALLOGLV=0
+BUILD_GLV=0
 BUILD_VSR=0
 BUILD_GAMMA=1
 
@@ -20,7 +20,13 @@ fi
 
 FILENAME=$(basename "$1")
 DIRNAME=$(dirname "$1")
-FILENAME="${DIRNAME//./_}_${FILENAME%.*}"
+
+if [ ${DIRNAME} == "." ]
+then 
+  FILENAME="${FILENAME%.*}"
+else
+  FILENAME="${DIRNAME//./_}_${FILENAME%.*}"
+fi
 
 echo FILENAME: ${FILENAME}
 TARGET=${FILENAME//\//_}_run
@@ -38,4 +44,4 @@ else
 fi
 
 cmake . ${CMAKE_FLAGS} ${TARGET_FLAG} -DNO_EXAMPLES=1
-make $TARGET -j4 $*
+make $TARGET -j7 $*
