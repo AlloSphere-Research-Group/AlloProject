@@ -10,4 +10,7 @@ git clone -b cmake --depth 1 https://github.com/AlloSphere-Research-Group/Gamma.
 #git add -A
 #git commit -m "Initial commit for project"
 
+# Remove remote of AlloProject to avoid committing to it
+git remote set-url --push origin no_push
+
 
