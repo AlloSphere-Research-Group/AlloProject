@@ -43,5 +43,5 @@ else
   exit 1
 fi
 
-cmake . ${CMAKE_FLAGS} ${TARGET_FLAG} -DNO_EXAMPLES=1
+cmake . ${CMAKE_FLAGS} ${TARGET_FLAG} -DNO_EXAMPLES=1 -Wno-dev
 make $TARGET -j7 $*
