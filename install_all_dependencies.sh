@@ -21,7 +21,7 @@ if [ `which apt-get` ]; then
 	
 elif [ `which port` ]; then
 	echo "Found MacPorts"
-	sudo port cmake
+	sudo port install cmake
 
 elif [ `which brew` ]; then
 	echo "Found Homebrew"
