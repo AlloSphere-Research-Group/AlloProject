@@ -64,19 +64,6 @@ else()
   set(GLV_INCLUDE_DIR "")
 endif(TARGET GLV)
 
-if(TARGET VSR)
-  if(TARGET ALLOVSR)
-    set(VSR_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/vsr)
-    set_target_properties(vsr PROPERTIES GLV_INCLUDE_DIR "${GLV_RELATIVE_DIR}"
-      GLV_LIBRARY "${GLV_LIBRARY}")
-    get_target_property(VSR_LIBRARY vsr LOCATION)
-  add_dependencies(${APP_NAME} vsr)
-  endif(TARGET ALLOVSR)
-else()
-    set(VSR_LIBRARY "")
-    set(VSR_INCLUDE_DIR "")
-endif(TARGET VSR)
-
 if(TARGET alloutil)
   get_target_property(ALLOUTIL_LIBRARY alloutil LOCATION)
   get_target_property(ALLOUTIL_DEP_INCLUDE_DIR alloutil ALLOUTIL_DEP_INCLUDE_DIR)
@@ -107,13 +94,12 @@ include_directories(${ALLOCORE_DEP_INCLUDE_DIRS}
   ${ALLOUTIL_DEP_INCLUDE_DIR}
   ${ALLOGLV_INCLUDE_DIR}
   ${GLV_INCLUDE_DIR}
-  ${ALLOVSR_INCLUDE_DIR}
   ${GAMMA_INCLUDE_DIR} )
 
 #    message("Gamma : ${GAMMA_INCLUDE_DIRs}")
 target_link_libraries(${APP_NAME}
   ${ALLOCORE_LIBRARY} ${ALLOUTIL_LIBRARY} ${ALLOGLV_LIBRARY}
-  ${GAMMA_LIBRARY} ${GLV_LIBRARY} ${VSR_LIBRARY}
+  ${GAMMA_LIBRARY} ${GLV_LIBRARY}
   ${ALLOCORE_LINK_LIBRARIES} ${ALLOUTIL_LINK_LIBRARIES} ${ALLOGLV_LINK_LIBRARIES})
 #list(REMOVE_ITEM PROJECT_RES_FILES ${ALLOPROJECT_APP_SRC})
 add_custom_target("${APP_NAME}_run"
