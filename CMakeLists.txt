@@ -24,6 +24,10 @@ endif(ALLOPROJECT_BUILD_DIR)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/build/bin)
 
+if(EXISTS "${SOURCE_DIR}/flags.cmake")
+  include("${SOURCE_DIR}/flags.cmake")
+endif()
+
 add_executable(${APP_NAME} EXCLUDE_FROM_ALL ${ALLOPROJECT_APP_SRC})
 if(APPLE)
   set_target_properties(${APP_NAME} PROPERTIES
