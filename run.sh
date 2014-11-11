@@ -3,6 +3,11 @@
 # ------------------------------------------------
 # You shouldn't need to touch the stuff below
 
+# Get the number of processors on OS X, linux, and (to-do) Windows.
+NPROC=$(grep --count ^processor /proc/cpuinfo 2>/dev/null || sysctl -n hw.ncpu || 2)
+# Save one core for the gui.
+PROC_FLAG=$((NPROC - 1))
+
 if [ $# == 0 ]
 then
     echo Aborting: You must provide a source filename or a directory
@@ -13,7 +18,7 @@ FILENAME=$(basename "$1")
 DIRNAME=$(dirname "$1")
 
 if [ ${DIRNAME} == "." ]
-then 
+then
   FILENAME="${FILENAME%.*}"
 else
   FILENAME="${DIRNAME//./_}_${FILENAME%.*}"
@@ -35,4 +40,4 @@ else
 fi
 
 cmake . ${CMAKE_FLAGS} ${TARGET_FLAG} -DNO_EXAMPLES=1 -Wno-dev
-make $TARGET -j7 $*
+make $TARGET -j "$PROC_FLAG" $*
