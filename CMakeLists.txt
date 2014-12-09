@@ -24,16 +24,16 @@ endif(ALLOPROJECT_BUILD_DIR)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/build/bin)
 
-if(EXISTS "${SOURCE_DIR}/flags.cmake")
-  include("${SOURCE_DIR}/flags.cmake")
-endif()
-
 add_executable(${APP_NAME} EXCLUDE_FROM_ALL ${ALLOPROJECT_APP_SRC})
+
 if(APPLE)
   set_target_properties(${APP_NAME} PROPERTIES
     LINK_FLAGS "-pagezero_size 10000 -image_base 100000000")
 endif(APPLE)
 
+if(EXISTS "${SOURCE_DIR}/flags.cmake")
+    include("${SOURCE_DIR}/flags.cmake")
+endif()
 
 if(EXISTS "${SOURCE_DIR}/flags.txt")
   file(READ "${SOURCE_DIR}/flags.txt" EXTRA_COMPILER_FLAGS)
@@ -42,7 +42,6 @@ if(EXISTS "${SOURCE_DIR}/flags.txt")
     COMPILE_FLAGS "${EXTRA_COMPILER_FLAGS}")
   message("WARNING: Using additional flags from ${SOURCE_DIR}/flags.txt: ${EXTRA_COMPILER_FLAGS}")
 endif()
-
 
 message("Target: ${APP_NAME}")
 message("From sources: ${ALLOPROJECT_APP_SRC}")
@@ -106,6 +105,7 @@ target_link_libraries(${APP_NAME}
   ${GAMMA_LIBRARY} ${GLV_LIBRARY}
   ${ALLOCORE_LINK_LIBRARIES} ${ALLOUTIL_LINK_LIBRARIES} ${ALLOGLV_LINK_LIBRARIES})
 #list(REMOVE_ITEM PROJECT_RES_FILES ${ALLOPROJECT_APP_SRC})
+
 add_custom_target("${APP_NAME}_run"
   COMMAND "${APP_NAME}"
   DEPENDS "${APP_NAME}"
