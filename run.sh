@@ -23,7 +23,7 @@ done
 
 
 # Get the number of processors on OS X, linux, and (to-do) Windows.
-NPROC=$(grep --count ^processor /proc/cpuinfo 2>/dev/null || sysctl -n hw.ncpu || 2)
+NPROC=$(grep --count ^processor /proc/cpuinfo 2>/dev/null || sysctl -n hw.ncpu || nproc || 2)
 # Save one core for the gui.
 PROC_FLAG=$((NPROC - 1))
 
@@ -60,11 +60,15 @@ fi
 # Don't pass target as Make flag.
 shift
 
-if [ -n "$debugger" ]; then
-  cmake . "$TARGET_FLAG" "$DBUILD_FLAG" -DRUN_IN_DEBUGGER=1 "-DALLOPROJECT_DEBUGGER=${debugger}" -DCMAKE_BUILD_TYPE=Debug > cmake_log.txt
-else
-  cmake . "$TARGET_FLAG" "$DBUILD_FLAG" -DRUN_IN_DEBUGGER=0 -DCMAKE_BUILD_TYPE=Release -Wno-dev > cmake_log.txt
+# Force correct CMake generator if on Windows.
+if [ "$MSYSTEM" = "MINGW64" -o "$MSYSTEM" = "MINGW32" -o "$MSYSTEM" = "MSYS" ]; then
+  GENERATOR_FLAG="-GMSYS Makefiles"
 fi
 
-make $TARGET -j$PROC_FLAG $*
+if [ -n "$debugger" ]; then
+  cmake . "$GENERATOR_FLAG" "$TARGET_FLAG" "$DBUILD_FLAG" -DRUN_IN_DEBUGGER=1 "-DALLOPROJECT_DEBUGGER=${debugger}" -DCMAKE_BUILD_TYPE=Debug > cmake_log.txt
+else
+  cmake . "$GENERATOR_FLAG" "$TARGET_FLAG" "$DBUILD_FLAG" -DRUN_IN_DEBUGGER=0 -DCMAKE_BUILD_TYPE=Release -Wno-dev > cmake_log.txt
+fi
 
+make $TARGET -j "$PROC_FLAG" $*
