@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 2.8)
-project(Oro)
+project(AlloApp)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   set(DEBUG_SUFFIX "_debug")
