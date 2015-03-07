@@ -75,6 +75,7 @@ endif(BUILDING_cuttlebone)
 
 if(BUILDING_Gamma)
     get_target_property(GAMMA_LIBRARY Gamma LOCATION)
+    get_target_property(GAMMA_INCLUDE_DIR Gamma GAMMA_INCLUDE_DIR)
     add_dependencies(${APP_NAME} Gamma)
     target_link_libraries(${APP_NAME} ${GAMMA_LIBRARY})
     include_directories(${GAMMA_INCLUDE_DIR})
