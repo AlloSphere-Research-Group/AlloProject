@@ -1,5 +1,3 @@
-target_link_libraries(${APP_NAME} csound64 csnd6)
-
 include_directories(cuttlebone phasespace /usr/local/include ${CMAKE_SOURCE_DIR})
 
 #find_library(CUTTLEBONE_LIB cuttlebone PATHS cuttlebone/build/ /usr/local/lib)
