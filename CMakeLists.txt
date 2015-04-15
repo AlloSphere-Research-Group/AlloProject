@@ -10,7 +10,11 @@ message("Building Project ${CMAKE_PROJECT_NAME}")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules" "${CMAKE_CURRENT_SOURCE_DIR}/AlloSystem/cmake_modules")
 include(cmake_modules/make_dep.cmake)
 
-make_dep(cuttlebone)
+# cuttlebone not supported on Windows.
+if(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+  make_dep(cuttlebone)
+endif()
+
 make_dep(Gamma)
 make_dep(GLV)
 
