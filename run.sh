@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Pass -d to enter debugger mode.
 
@@ -66,9 +66,9 @@ if [ "$MSYSTEM" = "MINGW64" -o "$MSYSTEM" = "MINGW32" -o "$MSYSTEM" = "MSYS" ]; 
 fi
 
 if [ -n "$debugger" ]; then
-  cmake . "$GENERATOR_FLAG" "$TARGET_FLAG" "$DBUILD_FLAG" -DRUN_IN_DEBUGGER=1 "-DALLOPROJECT_DEBUGGER=${debugger}" -DCMAKE_BUILD_TYPE=Debug > cmake_log.txt
+  cmake ./AlloProject "$GENERATOR_FLAG" "$TARGET_FLAG" "$DBUILD_FLAG" -DRUN_IN_DEBUGGER=1 "-DALLOPROJECT_DEBUGGER=${debugger}" -DCMAKE_BUILD_TYPE=Debug > cmake_log.txt
 else
-  cmake . "$GENERATOR_FLAG" "$TARGET_FLAG" "$DBUILD_FLAG" -DRUN_IN_DEBUGGER=0 -DCMAKE_BUILD_TYPE=Release -Wno-dev > cmake_log.txt
+  cmake ./AlloProject "$GENERATOR_FLAG" "$TARGET_FLAG" "$DBUILD_FLAG" -DRUN_IN_DEBUGGER=0 -DCMAKE_BUILD_TYPE=Release -Wno-dev > cmake_log.txt
 fi
 
 make $TARGET -j "$PROC_FLAG" $*

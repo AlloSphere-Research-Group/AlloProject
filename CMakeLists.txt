@@ -7,23 +7,23 @@ endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
 message("Building Project ${CMAKE_PROJECT_NAME}")
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules" "${CMAKE_CURRENT_SOURCE_DIR}/AlloSystem/cmake_modules")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules" "${CMAKE_CURRENT_SOURCE_DIR}/../AlloSystem/cmake_modules")
 include(cmake_modules/make_dep.cmake)
 
 # cuttlebone not supported on Windows.
 if(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-  make_dep(cuttlebone)
-endif()
+  make_dep(../cuttlebone)
+endif(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
 
-make_dep(Gamma)
-make_dep(GLV)
+make_dep(../Gamma)
+make_dep(../GLV)
 
 set(GAMMA_LIBRARY ${Gamma_LIBRARY})
 
 # Don't have AlloSystem try to build Gamma or GLV
 set(BUILD_GAMMA 0)
 set(BUILD_GLV 0)
-add_subdirectory(AlloSystem)
+add_subdirectory(../AlloSystem "${CMAKE_CURRENT_BINARY_DIR}/build")
 
 if((NOT ALLOPROJECT_BUILD_DIR) AND (NOT ALLOPROJECT_BUILD_APP_FILE))
   message(FATAL_ERROR "AlloProject requires passing a file or a directory to cmake. See run.sh script")

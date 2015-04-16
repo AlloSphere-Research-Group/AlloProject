@@ -31,7 +31,7 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/build/bin)
 add_executable("${APP_NAME}" EXCLUDE_FROM_ALL ${ALLOPROJECT_APP_SRC})
 
 if(EXISTS "${SOURCE_DIR}/flags.cmake")
-    include("${SOURCE_DIR}/flags.cmake")
+  include("${SOURCE_DIR}/flags.cmake")
 endif()
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
