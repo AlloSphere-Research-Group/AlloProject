@@ -6,9 +6,7 @@ if [ ! -d "AlloSystem/allocore" ]; then
     exit 1
 fi
 
-AlloSystem/allocore/install_dependencies.sh
-AlloSystem/alloutil/install_dependencies.sh
-AlloSystem/allonect/install_dependencies.sh
+AlloSystem/install_all_dependencies.sh
 
 ROOT=`pwd`
 PLATFORM=`uname`
