@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Pass -d to enter debugger mode.
 
@@ -9,26 +9,33 @@ else
 fi
 
 # ------------------------------------------------
-# You shouldn't need to touch the stuff below
+# You shouldn't need to touch the stuff below.
+
+AUTORUN=1
 
 # Runs the program through the specified debugger if -d is passed.
 OPTIND=1
-while getopts "d" opt; do
+while getopts ":d:v:n" opt; do
     case "$opt" in
     d)  debugger="$DEBUGGER"
         shift
         ;;
+    v) VERBOSE="VERBOSE=1"
+      shift
+      ;;
+    n) AUTORUN=0
+      shift
+      ;;
     esac
 done
 
-
-# Get the number of processors on OS X, linux, and (to-do) Windows.
-NPROC=$(grep --count ^processor /proc/cpuinfo 2>/dev/null || sysctl -n hw.ncpu || nproc || 2)
+# Get the number of processors on OS X; Linux; or MSYS2, or take a best guess.
+NPROC=$(grep --count ^processor /proc/cpuinfo 2>/dev/null || sysctl -n hw.ncpu || nproc || echo 2)
 # Save one core for the gui.
 PROC_FLAG=$((NPROC - 1))
 
-if [ "$#" == 0 ]; then
-    echo Aborting: You must provide a source filename or a directory
+if [ "$#" = 0 ]; then
+    echo Aborting: You must provide a source filename or a directory.
     exit 1
 fi
 
@@ -37,7 +44,11 @@ FILENAME=$(basename "$1" | sed 's/\.[^.]*$//')
 DIRNAME=$(dirname "$1")
 
 # Replace all forward slashes with underscores.
+if [ "$AUTORUN" = 0 ]; then
+TARGET=$(echo "${DIRNAME}_${FILENAME}" | sed 's/\//_/g')
+else
 TARGET=$(echo "${DIRNAME}_${FILENAME}_run" | sed 's/\//_/g')
+fi
 
 if [ "$DIRNAME" != "." ]; then
   # Replace all periods with underscores.
@@ -60,8 +71,7 @@ fi
 # Don't pass target as Make flag.
 shift
 
-# Force correct CMake generator if on Windows.
-if [ "$MSYSTEM" = "MINGW64" -o "$MSYSTEM" = "MINGW32" -o "$MSYSTEM" = "MSYS" ]; then
+if [ "$MSYSTEM" = "MINGW64" -o "$MSYSTEM" = "MINGW32" ]; then
   GENERATOR_FLAG="-GMSYS Makefiles"
 fi
 
@@ -71,4 +81,5 @@ else
   cmake . "$GENERATOR_FLAG" "$TARGET_FLAG" "$DBUILD_FLAG" -DRUN_IN_DEBUGGER=0 -DCMAKE_BUILD_TYPE=Release -Wno-dev > cmake_log.txt
 fi
 
-make $TARGET -j "$PROC_FLAG" $*
+make $VERBOSE $TARGET -j$PROC_FLAG $*
+
