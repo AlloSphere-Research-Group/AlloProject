@@ -1,0 +1,12 @@
+[submodule "AlloSystem"]
+	path = AlloSystem
+	url = https://github.com/AlloSphere-Research-Group/AlloSystem.git
+[submodule "GLV"]
+	path = GLV
+	url = https://github.com/AlloSphere-Research-Group/GLV.git
+[submodule "Gamma"]
+	path = Gamma
+	url = https://github.com/AlloSphere-Research-Group/Gamma.git
+[submodule "cuttlebone"]
+	path = cuttlebone
+	url = https://github.com/rbtsx/cuttlebone.git
