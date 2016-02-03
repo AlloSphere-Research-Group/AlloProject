@@ -17,6 +17,6 @@ git submodule add --depth 1 https://github.com/rbtsx/cuttlebone.git cuttlebone
 #git commit -m "Initial commit for project"
 
 # Remove remote of AlloProject to avoid committing to it
-git remote set-url --push origin no_push
+# git remote set-url --push origin no_push
 
 
