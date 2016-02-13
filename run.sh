@@ -43,16 +43,17 @@ fi
 FILENAME=$(basename "$1" | sed 's/\.[^.]*$//')
 DIRNAME=$(dirname "$1")
 
-# Replace all forward slashes with underscores.
-if [ "$AUTORUN" = 0 ]; then
-TARGET=$(echo "${DIRNAME}_${FILENAME}" | sed 's/\//_/g')
+# Build name replacing all forward slashes with underscores.
+if [ "$DIRNAME" != "." ]; then
+  TARGET=$(echo "${DIRNAME}_${FILENAME}" | sed 's/\//_/g')
+    # Replace all periods with underscores.
+    TARGET=$(echo "${TARGET}" | sed 's/\./_/g')
 else
-TARGET=$(echo "${DIRNAME}_${FILENAME}_run" | sed 's/\//_/g')
+  TARGET=$(echo "${FILENAME}" | sed 's/\//_/g')
 fi
 
-if [ "$DIRNAME" != "." ]; then
-  # Replace all periods with underscores.
-  TARGET=$(echo "${TARGET}" | sed 's/\./_/g')
+if [ "$AUTORUN" -eq 1 ]; then
+  TARGET="${TARGET}_run"
 fi
 
 # Change behavior if the target is a file or directory.
@@ -82,4 +83,3 @@ else
 fi
 
 make $VERBOSE $TARGET -j$PROC_FLAG $*
-
