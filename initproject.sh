@@ -1,8 +1,11 @@
 #!/bin/bash
 
-git init
-git submodule init
-git submodule update
+#git init
+#git submodule init
+#git submodule update
+
+git submodule update --init GLV
+git submodule update --init --depth 50
 
 # git submodule add --depth 1 https://github.com/AlloSphere-Research-Group/AlloSystem.git AlloSystem
 # git submodule add --depth 1 https://github.com/AlloSphere-Research-Group/GLV.git GLV
