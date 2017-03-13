@@ -16,25 +16,21 @@ ALLOSPHERE_APP_FLAG="-DBUILD_ALLOSPHERE_APP=0"
 
 # Runs the program through the specified debugger if -d is passed.
 OPTIND=1
-while getopts ":d:v:n:a:s" opt; do
+while getopts ":dvnas" opt; do
   case "$opt" in
   d)  debugger="$DEBUGGER"
-      shift
       ;;
   v)  VERBOSE="VERBOSE=1"
-      shift
       ;;
   n)  AUTORUN=0
-      shift
       ;;
   a)  ALLOSPHERE_APP_FLAG="-DBUILD_ALLOSPHERE_APP=1 -DBUILD_ALLOSPHERE_APP_AUDIO_RENDERER=1"
-      shift
       ;;
   s)  ALLOSPHERE_APP_FLAG="-DBUILD_ALLOSPHERE_APP=1 -DBUILD_ALLOSPHERE_APP_AUDIO_RENDERER=0"
-      shift
       ;;
   esac
 done
+shift $((OPTIND-1))
 
 # Get the number of processors on OS X; Linux; or MSYS2, or take a best guess.
 NPROC=$(grep --count ^processor /proc/cpuinfo 2>/dev/null || sysctl -n hw.ncpu || nproc || echo 2)
@@ -84,6 +80,7 @@ if [ "$MSYSTEM" = "MINGW64" -o "$MSYSTEM" = "MINGW32" ]; then
   GENERATOR_FLAG="-GMSYS Makefiles"
 fi
 
+
 FLAGS="$TARGET_FLAG $DBUILD_FLAG $ALLOSPHERE_APP_FLAG"
 
 if [ ! -d "build" ]; then
@@ -92,12 +89,11 @@ fi
 
 cd build
 
-
 # GENERATOR_FLAG needs to be separated out in order to be parsed as a commandline flag with an argument with a space in it.
 if [ -n "$debugger" ]; then
-  cmake . "$GENERATOR_FLAG" "$TARGET_FLAG" "$DBUILD_FLAG" -DRUN_IN_DEBUGGER=1 "-DALLOSYSTEM_DEBUGGER=${debugger}" -DCMAKE_BUILD_TYPE=Debug > cmake_log.txt
+  cmake .. $FLAGS -DRUN_IN_DEBUGGER=1 "-DALLOSYSTEM_DEBUGGER=${debugger}" -DCMAKE_BUILD_TYPE=Debug $GENERATOR_FLAG > cmake_log.txt
 else
-  cmake "$GENERATOR_FLAG" $FLAGS -DRUN_IN_DEBUGGER=0 -DCMAKE_BUILD_TYPE=Release -Wno-dev .. > cmake_log.txt
+  cmake .. $FLAGS -DRUN_IN_DEBUGGER=0 -DCMAKE_BUILD_TYPE=Release -Wno-dev $GENERATOR_FLAG > cmake_log.txt
 fi
 
 make $VERBOSE $TARGET -j$PROC_FLAG $*
